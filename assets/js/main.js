@@ -11,6 +11,17 @@ Object.prototype.query = function(){
 	return q.substr(1);
 }
 
+/// AddEventListener
+Element.prototype.addEvent = function(event, callback) {
+    if (this.addEventListener) {
+        this.addEventListener(event, callback, false) 
+    } else if (this.attachEvent) {
+        this.attachEvent('on' + event, callback); 
+    } else {
+        this['on' + event] = callback; 
+    }
+}
+
 /// Get query params
 window.$_GET = window.location.search.substr(1).split('&').reduce(function(o, i){
 	let
@@ -22,32 +33,32 @@ window.$_GET = window.location.search.substr(1).split('&').reduce(function(o, i)
 	return o;
 }, {});
 
-/// Execute all requisitions
-function getJSON( url, callback ){
-	let xhr = new XMLHttpRequest();
-	xhr.onload = () => callback( JSON.parse(xhr.responseText) );
-	xhr.open( 'GET', url );
-	xhr.send();
-}
+/// UI options
+  var hamburgerBtn = document.querySelector('.hamburger'),
+      overlay = document.querySelector('.overlay'),
+     isClosed = false;
 
-/**
- * Functions to OMDb
- */
+    function hamburger_cross() {
 
-/// Load requisition
-function searchOMDb(){
-	let url = 'http://www.omdbapi.com/?';
-	let params = {
-		"s": $_GET['s'],
-		"type": $_GET['type'],
-		"r": "json",
-		"page": (typeof $_GET['page'] != 'undefined') ? $_GET['page'] : 1
-		//"plot": "short",
-		//"tomatoes": true
-	};
-	url += params.query();
-	getJSON( url, showSearchResults );
-}
+      if (isClosed == true) {          
+        overlay.style.display = 'none';
+        hamburgerBtn.classList.remove('is-open');
+        hamburgerBtn.classList.add('is-closed');
+        isClosed = false;
+      } else {   
+        overlay.style.display = 'block';
+        hamburgerBtn.classList.remove('is-closed');
+        hamburgerBtn.classList.add('is-open');
+        isClosed = true;
+      }
+  }
+hamburgerBtn.addEvent('click', hamburger_cross);
+document.querySelector('[data-toggle="offcanvas"]').addEvent('click', function(){
+	document.querySelector('#wrapper').classList.toggle('toggled')
+});
+document.querySelector('.btn-goback').addEvent('click', function(){
+	window.history.back();
+});
 
 function showSearchResults( json ){
 	let
@@ -142,35 +153,53 @@ function showSearchPagination( totalResults ){
 }
 
 function showMovieData( json ){
-	console.log( json );
 	let
 		$filmTitle = document.querySelector('.film-title'),
 		$filmYear = document.querySelector('.film-year'),
 		$filmImdb = document.querySelector('.film-imdb'),
 		$filmGenres = document.querySelector('.film-genres'),
+		$filmCast = document.querySelector('.film-cast'),
 		$filmPoster = document.querySelector('.film-poster'),
-		$filmPlot = document.querySelector('.film-plot');
+		$filmPlot = document.querySelector('.film-plot'),
+		$filmLang = document.querySelector('.film-lang'),
+		movie = json.data.movie;
 
-	$filmTitle.innerHTML = json.data.movie.title;
-	$filmYear.innerHTML = json.data.movie.year;
-	$filmImdb.innerHTML = json.data.movie.imdb_code;
-	$filmGenres.innerHTML = json.data.movie.genres.map(function(val){
+	$filmTitle.innerHTML = movie.title;
+	$filmYear.innerHTML = movie.year;
+	$filmImdb.innerHTML = movie.imdb_code;
+	$filmGenres.innerHTML = movie.genres.map(function(val){
 		return ` <a href="genre.html?genre=${val}">${val}</a>`;
 	});
-	$filmPlot.innerHTML = json.data.movie.description_full;
-	$filmPoster.setAttribute('src', json.data.movie.large_cover_image);
-	$filmPoster.setAttribute('alt', json.data.movie.title);
+	$filmPlot.innerHTML = movie.description_full;
+	$filmLang.innerHTML = movie.language;
+	$filmPoster.setAttribute('src', movie.medium_cover_image);
+	$filmPoster.setAttribute('alt', movie.title);
+
+	if( movie.cast ){
+		$filmCast.innerHTML = movie.cast.map(function(act){
+			return ` ${act.name} (${act.character_name})`;
+		});
+	} else {
+		$filmCast.innerHTML = 'N/A';
+	}
+
+	// Get movie suggestions
+	yts.movieSuggestions(movie.id, showMovieSuggestions);
 
 	// Show torrent list
 	let temp = '';
 	let download;
 
-	for(let torrent of json.data.movie.torrents){
-		download = `magnet:?xt=urn:btih:${torrent.hash}&dn=${encodeURI(json.data.movie.title + ' ' + torrent.quality)}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969`;
-		temp += `<tr><td>${json.data.movie.title}</td><td>${torrent.quality}</td><td>${torrent.peers}</td>`;
+	for(let torrent of movie.torrents){
+		download = `magnet:?xt=urn:btih:${torrent.hash}&dn=${encodeURI(movie.title + ' ' + torrent.quality)}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969`;
+		temp += `<tr><td>${movie.title}</td><td>${torrent.quality}</td><td>${torrent.peers}</td>`;
 		temp += `<td>${torrent.seeds}</td><td>${torrent.size}</td><td><a href="${download}" target="_blank">Baixar</a></td></tr>`;
 	}
 
 	document.querySelector('#tableTorrent tbody').innerHTML = temp;
 	document.getElementById('loader').style.display = "none";
+}
+
+function showMovieSuggestions( json ){
+	console.log( json );
 }

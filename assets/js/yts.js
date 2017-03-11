@@ -53,4 +53,20 @@
       this.createRequest(requestURL, requestData, callback);
     };
 
+    namespace.movieSuggestions = function (movieID, callback){
+      if (typeof callback !== 'function') {
+          throw new Error("The callback parameter was not a function");
+      }
+
+      console.log( typeof movieID );
+
+      if (typeof movieID != 'number') {
+          throw new Error("I don't know how to handle " + movieID);
+      }
+
+      let requestURL = API_URL + 'movie_suggestions.json?';
+      let requestData = { movie_id: movieID };
+      this.createRequest(requestURL, requestData, callback);
+    };
+
 })(window.yts || (window.yts = {}));

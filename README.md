@@ -24,6 +24,7 @@ Endpoint:
 > https://yts.ag/api/v2/list_movies.json
 
 Parâmentros:
+
 Parâmetro | Obrigatório | Tipo | Default | Descrição |
 ---------------|-------------|------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------------------------------------------|
 limit | N | Integer [1 - 50] | 20 | Limite de resultados por página. |
@@ -42,6 +43,7 @@ Endpoint:
 > https://yts.ag/api/v2/movie_details.json
 
 Parâmetros:
+
 Parâmetro | Obrigatório | Tipo | Default | Descrição |
 -----------|-------------|--------------------|---------|--------------------------------------------------------|
 movie_id | Y | Integer (Unsigned) | null | ID do filme. |

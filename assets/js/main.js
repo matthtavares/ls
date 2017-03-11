@@ -155,7 +155,7 @@ function showMovieData( json ){
 	$filmYear.innerHTML = json.data.movie.year;
 	$filmImdb.innerHTML = json.data.movie.imdb_code;
 	$filmGenres.innerHTML = json.data.movie.genres.map(function(val){
-		return ` <a href="genres.html?genre=${val}">${val}</a>`;
+		return ` <a href="genre.html?genre=${val}">${val}</a>`;
 	});
 	$filmPlot.innerHTML = json.data.movie.description_full;
 	$filmPoster.setAttribute('src', json.data.movie.large_cover_image);

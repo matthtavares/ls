@@ -103,9 +103,20 @@ function showSearchPagination( totalResults ){
 		queryString = $_GET,
 		currentPage = (typeof $_GET['page'] == 'undefined') ? 1 : parseInt($_GET['page']),
 		cssClass = '',
-		totalPages = Math.ceil( totalResults / 10 );
+		totalLinks = 5,
+		totalPages = Math.ceil( totalResults / 10 ),
+		start = ( (currentPage - totalLinks) > 0 ) ? (currentPage - totalLinks) : 1,
+		end = ( (currentPage + totalLinks) < totalPages ) ? (currentPage + totalLinks) : totalPages;
 
-	url = url.replace(window.location.search, '?');
+	for(let k of Object.keys(queryString)){
+		if( k == "" )
+			delete queryString[k];
+	}
+
+	if( window.location.search != "" )
+		url = url.replace(window.location.search, '?');
+	else
+		url = url + '?';
 
 	/// First page
 	queryString.page = 1;
@@ -124,10 +135,22 @@ function showSearchPagination( totalResults ){
 		pag += `<li><a href="${url + queryString.query()}"><i class="fa fa-angle-left"></i></a></li>`;
 	}
 
-	for(let i = 1; i <= totalPages; i++){
+	if( start > 1 ){
+		queryString.page = 1;
+		pag += `<li><a href="${url + queryString.query()}">1</a></li>`;
+		pag += `<li class="disabled"><a>...</a></li>`;
+	}
+
+	for(let i = start; i <= end; i++){
 		cssClass = (currentPage == i) ? ' class="active"' : '';
 		queryString.page = i;
 		pag += `<li${cssClass}><a href="${url + queryString.query()}">${i}</a></li>`;
+	}
+
+	if( end < totalPages ){
+		queryString.page = totalPages;
+		pag += `<li class="disabled"><a>...</a></li>`;
+		pag += `<li><a href="${url + queryString.query()}">${totalPages}</a></li>`;
 	}
 
 	/// Next page
@@ -137,7 +160,6 @@ function showSearchPagination( totalResults ){
 		queryString.page = currentPage + 1;
 		pag += `<li><a href="${url + queryString.query()}"><i class="fa fa-angle-right"></i></a></li>`;
 	}
-	
 
 	/// Last page
 	if( currentPage == totalPages ){

@@ -95,7 +95,8 @@
     <script type="text/javascript">
       yts.listMovies({
         sort_by: 'year',
-        order_by: 'desc'
+        order_by: 'desc',
+        page: (typeof $_GET['page'] == 'undefined') ? 1 : $_GET['page']
       }, showSearchResults);
     </script>
   </body>

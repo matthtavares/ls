@@ -21,10 +21,10 @@ Este projeto tem como objetivo a utilização dos conhecimentos adquiridos em sa
 
 * Listagem de Filmes
 
-Endpoint:
+**Endpoint:**
 > https://yts.ag/api/v2/list_movies.json
 
-Parâmentros:
+**Parâmentros:**
 
 | Parâmetro | Obrigatório | Tipo | Default | Descrição |
 |:---------------:|-------------|------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------------------------------------------|
@@ -40,10 +40,10 @@ Parâmentros:
 
 * Detalhes do Filme
 
-Endpoint:
+**Endpoint:**
 > https://yts.ag/api/v2/movie_details.json
 
-Parâmetros:
+**Parâmetros:**
 
 | Parâmetro | Obrigatório | Tipo | Default | Descrição |
 |:-----------:|-------------|--------------------|---------|--------------------------------------------------------|

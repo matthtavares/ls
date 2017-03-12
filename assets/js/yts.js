@@ -58,8 +58,6 @@
           throw new Error("The callback parameter was not a function");
       }
 
-      console.log( typeof movieID );
-
       if (typeof movieID != 'number') {
           throw new Error("I don't know how to handle " + movieID);
       }

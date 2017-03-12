@@ -65,7 +65,9 @@ function showSearchResults( json ){
 		temp = '',
 		i = 1;
 
-	if( json.data.movie_count > 0 ){
+	console.log( json );
+
+	if( json.data.movies.length > 0 ){
 
 		for(let value of json.data.movies){
 			// Replace image if not avaible
@@ -84,7 +86,7 @@ function showSearchResults( json ){
 		}
 
 		// Show pagination
-		showSearchPagination(json.data.movie_count);
+		showSearchPagination(json.data.limit, json.data.movie_count);
 
 	} else {
 		temp = '<h3 class="text-danger text-center">Não há resultados!</h3>';
@@ -96,7 +98,7 @@ function showSearchResults( json ){
 	document.getElementById('loader').style.display = "none";
 }
 
-function showSearchPagination( totalResults ){
+function showSearchPagination( limit, totalResults ){
 	let
 		pag = '<nav><ul class="pagination">',
 		url = window.location.href,
@@ -104,7 +106,7 @@ function showSearchPagination( totalResults ){
 		currentPage = (typeof $_GET['page'] == 'undefined') ? 1 : parseInt($_GET['page']),
 		cssClass = '',
 		totalLinks = 5,
-		totalPages = Math.ceil( totalResults / 10 ),
+		totalPages = Math.ceil( totalResults / limit ),
 		start = ( (currentPage - totalLinks) > 0 ) ? (currentPage - totalLinks) : 1,
 		end = ( (currentPage + totalLinks) < totalPages ) ? (currentPage + totalLinks) : totalPages;
 

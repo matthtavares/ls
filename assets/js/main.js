@@ -205,6 +205,9 @@ function showMovieData( json ){
 		$filmCast.innerHTML = 'N/A';
 	}
 
+	// Movie title on title bar
+	document.querySelector('title').prepend(`${movie.title} - `);
+
 	// Get movie suggestions
 	yts.movieSuggestions(movie.id, showMovieSuggestions);
 

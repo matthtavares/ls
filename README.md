@@ -17,6 +17,18 @@ Este projeto tem como objetivo a utilização dos conhecimentos adquiridos em sa
 
 ## Protótipos
 
+![Listing movies - Desktop](assets/img/demo1.jpg)
+> Listing movies - Desktop
+
+![Movie details - Desktop](assets/img/demo2.jpg)
+> Movie Details - Desktop
+
+![Movie details - Mobile](assets/img/demomob1.jpg)
+> Movie details - Mobile
+
+![Movie details (Menu Open) - Mobile](assets/img/demomob2.jpg)
+> Movie details (Menu Open) - Mobile
+
 ## Recursos da API
 
 * Listagem de Filmes

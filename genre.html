@@ -22,36 +22,48 @@
       <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
         <ul class="nav sidebar-nav">
           <li class="sidebar-brand">
-            <a href="#">Brand</a>
+            <a href="index.html">OpenTorrent</a>
           </li>
           <li>
             <form action="search.html" method="GET" class="navbar-search">
               <div class="input-group">
-                <input type="text" class="form-control" name="q" placeholder="Pesquisar por...">
+                <input type="text" class="form-control" name="q" placeholder="Search for...">
                 <span class="input-group-btn">
                   <button class="btn btn-fill btn-default" type="button"><i class="fa fa-search"></i></button>
                 </span>
               </div><!-- /input-group -->
             </form>
           </li>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Team</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Genres <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header">Dropdown heading</li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><a href="genre.html?genre=Action">Action</a></li>
+              <li><a href="genre.html?genre=Adventure">Adventure</a></li>
+              <li><a href="genre.html?genre=Animation">Animation</a></li>
+              <li><a href="genre.html?genre=Biography">Biography</a></li>
+              <li><a href="genre.html?genre=Comedy">Comedy</a></li>
+              <li><a href="genre.html?genre=Crime">Crime</a></li>
+              <li><a href="genre.html?genre=Documentary">Documentary</a></li>
+              <li><a href="genre.html?genre=Drama">Drama</a></li>
+              <li><a href="genre.html?genre=Family">Family</a></li>
+              <li><a href="genre.html?genre=Fantasy">Fantasy</a></li>
+              <li><a href="genre.html?genre=Film-Noir">Film-Noir</a></li>
+              <li><a href="genre.html?genre=History">History</a></li>
+              <li><a href="genre.html?genre=Horror">Horror</a></li>
+              <li><a href="genre.html?genre=Music">Music</a></li>
+              <li><a href="genre.html?genre=Musical">Musical</a></li>
+              <li><a href="genre.html?genre=Mystery">Mystery</a></li>
+              <li><a href="genre.html?genre=Romance">Romance</a></li>
+              <li><a href="genre.html?genre=Sci-Fi">Sci-Fi</a></li>
+              <li><a href="genre.html?genre=Sport">Sport</a></li>
+              <li><a href="genre.html?genre=Thriller">Thriller</a></li>
+              <li><a href="genre.html?genre=War">War</a></li>
+              <li><a href="genre.html?genre=Western">Western</a></li>
             </ul>
           </li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="https://twitter.com/maridlcrmn">Follow me</a></li>
         </ul>
       </nav>
       <!-- /#sidebar-wrapper -->
@@ -93,9 +105,11 @@
     <script src="assets/js/yts.js"></script>
     <script src="assets/js/main.js"></script>
     <script type="text/javascript">
+      document.querySelector('title').prepend(`Genre: ${$_GET['genre']} - `);
       document.querySelector('.genre-term').innerHTML = $_GET['genre'];
       yts.listMovies({
-        genre: $_GET['genre']
+        genre: $_GET['genre'],
+        page: (typeof $_GET['page'] == 'undefined') ? 1 : $_GET['page']
       }, showSearchResults);
     </script>
   </body>

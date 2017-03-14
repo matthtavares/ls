@@ -65,9 +65,7 @@ function showSearchResults( json ){
 		temp = '',
 		i = 1;
 
-	console.log( json );
-
-	if( json.data.movies.length > 0 ){
+	if( json.data.movies && json.data.movies.length > 0 ){
 
 		for(let value of json.data.movies){
 			// Replace image if not avaible
@@ -217,7 +215,7 @@ function showMovieData( json ){
 	for(let torrent of movie.torrents){
 		download = `magnet:?xt=urn:btih:${torrent.hash}&dn=${encodeURI(movie.title + ' ' + torrent.quality)}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969`;
 		temp += `<tr><td>${movie.title}</td><td>${torrent.quality}</td><td>${torrent.peers}</td>`;
-		temp += `<td>${torrent.seeds}</td><td>${torrent.size}</td><td><a href="${download}" target="_blank">Baixar</a></td></tr>`;
+		temp += `<td>${torrent.seeds}</td><td>${torrent.size}</td><td><a href="${download}" target="_blank">Download</a></td></tr>`;
 	}
 
 	document.querySelector('#tableTorrent tbody').innerHTML = temp;

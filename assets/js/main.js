@@ -14,11 +14,11 @@ Object.prototype.query = function(){
 /// AddEventListener
 Element.prototype.addEvent = function(event, callback) {
     if (this.addEventListener) {
-        this.addEventListener(event, callback, false) 
+        this.addEventListener(event, callback, false)
     } else if (this.attachEvent) {
-        this.attachEvent('on' + event, callback); 
+        this.attachEvent('on' + event, callback);
     } else {
-        this['on' + event] = callback; 
+        this['on' + event] = callback;
     }
 }
 
@@ -40,12 +40,12 @@ window.$_GET = window.location.search.substr(1).split('&').reduce(function(o, i)
 
     function hamburger_cross() {
 
-      if (isClosed == true) {          
+      if (isClosed == true) {
         overlay.style.display = 'none';
         hamburgerBtn.classList.remove('is-open');
         hamburgerBtn.classList.add('is-closed');
         isClosed = false;
-      } else {   
+      } else {
         overlay.style.display = 'block';
         hamburgerBtn.classList.remove('is-closed');
         hamburgerBtn.classList.add('is-open');
@@ -75,7 +75,7 @@ function showSearchResults( json ){
 	        if( i == 1 ){
 	          temp += '<div class="row">';
 	        }
-	        temp += `<div class="col-md-3"><div class="thumbnail"><a href="film.html?id=${value.id}"><img src="${value.large_cover_image}" alt="${value.title}"></a><div class="caption"><h2>${value.title}</h2><p><b>Ano:</b> ${value.year}<br><b>IMDb:</b> ${value.imdb_code}</p></div></div></div>`;
+	        temp += `<div class="col-md-3"><div class="thumbnail"><a href="film.html?id=${value.id}"><img src="${value.large_cover_image}" alt="${value.title}"></a><div class="caption"><h2>${value.title}</h2><p><b>Year:</b> ${value.year}<br><b>IMDb:</b> <a href="http://www.imdb.com/title/${value.imdb_code}/" target="_balnk">View page</a></p></div></div></div>`;
 	        if( i == 4 ){
 	          temp += '</div>';
 	          i = 0;
@@ -188,7 +188,7 @@ function showMovieData( json ){
 
 	$filmTitle.innerHTML = movie.title;
 	$filmYear.innerHTML = movie.year;
-	$filmImdb.innerHTML = movie.imdb_code;
+	$filmImdb.innerHTML = `<a href="http://www.imdb.com/title/${movie.imdb_code}/" target="_balnk">View page</a>`;
 	$filmGenres.innerHTML = movie.genres.map(function(val){
 		return ` <a href="genre.html?genre=${val}">${val}</a>`;
 	});
@@ -199,10 +199,17 @@ function showMovieData( json ){
 
 	if( movie.cast ){
 		$filmCast.innerHTML = movie.cast.map(function(act){
-			return ` ${act.name} (${act.character_name})`;
+			return ` <a href="http://www.imdb.com/name/nm${act.imdb_code}/" target="_blank">${act.name} (${act.character_name})</a>`;
 		});
 	} else {
 		$filmCast.innerHTML = 'N/A';
+	}
+
+	// YouTube trailer
+	if( movie.yt_trailer_code ){
+		document.querySelector('.yt-btn').innerHTML = `<button type="button" class="btn btn-youtube btn-fill" data-yt-code="${movie.yt_trailer_code}"><i class="fa fa-youtube-play"></i> Watch Trailer</button>`;
+		yttrailer.create( movie.yt_trailer_code );
+		document.querySelector('.btn-youtube').addEvent('click', yttrailer.open );
 	}
 
 	// Movie title on title bar
@@ -226,5 +233,5 @@ function showMovieData( json ){
 }
 
 function showMovieSuggestions( json ){
-	console.log( json );
+	//console.log( json );
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="A search-service of movies and series torrents.">
     <meta name="author" content="Mateus Tavares, Victor Ribeiro, Ronily Gomes">
-    <title>OpenTorrent</title>
+    <title>About - OpenTorrent</title>
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -77,39 +77,12 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
-              <main id="film-content">
-                <button class="btn btn-default btn-fill btn-goback" type="button"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</button>
-                <div class="row">
-                  <div class="col-md-3">
-                    <img src="" alt="" class="film-poster img-responsive">
-                  </div>
-                  <div class="col-md-9">
-                    <h2 class="film-title"></h2>
-                    <p><b>Year:</b> <span class="film-year"></span></p>
-                    <p><b>Genres:</b> <span class="film-genres"></span></p>
-                    <p><b>Language:</b> <span class="film-lang"></span></p>
-                    <p><b>Cast:</b> <span class="film-cast"></span></p>
-                    <p><b>IMDb:</b> <span class="film-imdb"></span></p>
-                    <p><b>Synopsys:</b> <span class="film-plot"></span></p>
-                    <p class="yt-btn"></p>
-                  </div>
-                </div>
-                <h3>Torrents</h3>
-                <table id="tableTorrent" class="table table-striped table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Quality</th>
-                      <th>Peers</th>
-                      <th>Seeds</th>
-                      <th>Size</th>
-                      <th>Magnet</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-                <div id="loader"><div class="loading"></div><p>Loading torrents...</p></div>
-              </main>
+              <h2 class="page-header">About</h2>
+              <p>Mussum Ipsum, cacilds vidis litro abertis. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Detraxit consequat et quo num tendi nada. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed non consequat odio. Sapien in monti palavris qui num significa nadis i pareci latim.</p>
+              <p>Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Leite de capivaris, leite de mula manquis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae iaculis nisl.</p>
+              <p>Viva Forevis aptent taciti sociosqu ad litora torquent Mais vale um bebadis conhecidiss, que um alcoolatra anonimiss. Interagi no mé, cursus quis, vehicula ac nisi. Ta deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.”</p>
+              <p>Pra lá , depois divoltis porris, paradis. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis. Per aumento de cachacis, eu reclamis. Quem num gosti di mum que vai caçá sua turmis!</p>
+              <p>Diuretics paradis num copo é motivis de denguis. in elementis mé pra quem é amistosis quis leo. A ordem dos tratores não altera o pão duris Quem manda na minha terra sou Euzis!</p>
             </div>
           </div>
 
@@ -121,21 +94,12 @@
       <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
-
     <!-- Bootstrap core JavaScript
       ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.6/bootstrap-native.min.js"></script>
     <script src="https://use.fontawesome.com/88126ae5a7.js"></script>
     <script src="assets/js/yts.js"></script>
-    <script src="assets/js/yt-modal.js"></script>
     <script src="assets/js/main.js"></script>
-    <script type="text/javascript">
-      yts.movieDetails({
-        movie_id: $_GET['id'],
-        with_images: true,
-        with_cast: true
-      }, showMovieData);
-    </script>
   </body>
 </html>

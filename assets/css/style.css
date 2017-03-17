@@ -10,8 +10,8 @@ body {
 }
 body,
 html { height: 100%;}
-.nav .open > a, 
-.nav .open > a:hover, 
+.nav .open > a,
+.nav .open > a:hover,
 .nav .open > a:focus {background-color: transparent;}
 
 #loader {
@@ -34,20 +34,45 @@ html { height: 100%;}
   -moz-animation: spin 1s infinite linear;
   animation: spin 1s infinite linear;
 }
-@-webkit-keyframes spin { 
-  100% { 
-    -webkit-transform: rotate(360deg); 
-  } 
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
-@-moz-keyframes spin { 
-  100% { 
-    transform: rotate(360deg); 
-  } 
+@-moz-keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
-@keyframes spin { 
-  100% { 
-    transform: rotate(360deg); 
-  } 
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-youtube {
+  border-color: #e52d27;
+  color: #e52d27;
+}
+.btn-youtube:hover, .btn-youtube:focus, .btn-youtube:active, .btn-youtube.active, .open > .btn-youtube.dropdown-toggle {
+  background-color: transparent;
+  color: #e52d27;
+  border-color: #e52d27;
+  opacity: 1;
+}
+.btn-youtube:disabled, .btn-youtube[disabled], .btn-youtube.disabled {
+  background-color: transparent;
+  border-color: #e52d27;
+}
+.btn-youtube.btn-fill {
+  color: #FFFFFF;
+  background-color: #e52d27;
+  opacity: 0.9;
+}
+.btn-youtube.btn-fill:hover, .btn-youtube.btn-fill:focus, .btn-youtube.btn-fill:active, .btn-youtube.btn-fill.active, .open > .btn-youtube.btn-fill.dropdown-toggle {
+  background-color: #e52d27;
+  color: #FFFFFF;
+  opacity: 1;
 }
 
 /*-------------------------------*/
@@ -114,7 +139,7 @@ html { height: 100%;}
 }
 
 .sidebar-nav li {
-    position: relative; 
+    position: relative;
     line-height: 20px;
     display: inline-block;
     width: 100%;
@@ -140,7 +165,7 @@ html { height: 100%;}
     background-color: #1a1a1a;
 }
 .sidebar-nav > li:before {
-    background-color: #314190;   
+    background-color: #314190;
 }
 .sidebar-nav > li:first-child:before {
 	background-color: transparent;
@@ -163,7 +188,7 @@ html { height: 100%;}
     display: block;
     color: #ddd;
     text-decoration: none;
-    padding: 10px 15px 10px 30px;    
+    padding: 10px 15px 10px 30px;
 }
 
 .sidebar-nav li a:hover,
@@ -211,7 +236,7 @@ html { height: 100%;}
 
 .hamburger {
   position: fixed;
-  top: 20px;  
+  top: 20px;
   z-index: 999;
   display: block;
   width: 32px;
@@ -260,8 +285,8 @@ html { height: 100%;}
 .hamburger.is-closed .hamb-bottom {
   background-color: #1a1a1a;
 }
-.hamburger.is-closed .hamb-top { 
-  top: 5px; 
+.hamburger.is-closed .hamb-top {
+  top: 5px;
   -webkit-transition: all .35s ease-in-out;
 }
 .hamburger.is-closed .hamb-middle {
@@ -269,7 +294,7 @@ html { height: 100%;}
   margin-top: -2px;
 }
 .hamburger.is-closed .hamb-bottom {
-  bottom: 5px;  
+  bottom: 5px;
   -webkit-transition: all .35s ease-in-out;
 }
 
@@ -289,9 +314,9 @@ html { height: 100%;}
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-bottom {
   top: 50%;
-  margin-top: -2px;  
+  margin-top: -2px;
 }
-.hamburger.is-open .hamb-top { 
+.hamburger.is-open .hamb-top {
   -webkit-transform: rotate(45deg);
   -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
 }
@@ -335,7 +360,7 @@ html { height: 100%;}
     background-color: rgba(250,250,250,.8);
     z-index: 1;
 }
-    
+
 @media screen and (min-width: 900px) {
     #wrapper {
         padding-left: 220px;
@@ -377,4 +402,61 @@ html { height: 100%;}
 }
 .film-poster {
 	margin-bottom: 30px;
+}
+
+/**
+ * YouTube Trailer Modal
+ */
+ body.yt-open {
+   overflow: hidden;
+ }
+ #yt-trailer {
+   display: none;
+ }
+ #yt-trailer.open {
+     display: block;
+     position: fixed;
+     width: 100%;
+     height: 100vh;
+     top: 0;
+     left: 0;
+     z-index: 9998;
+ }
+ #yt-trailer .overlay {
+     display: block !important;
+     position: absolute;
+     width: 100%;
+     height: 100vh;
+     background-color: rgba(0,0,0,0.7);
+ }
+ #yt-trailer .modal-dialog {
+     display: block;
+     position: relative;
+     z-index: 9999;
+     width: 95%;
+ }
+ #yt-trailer .modal-dialog .modal-close {
+    display: block;
+    color: #fff;
+    font-weight: 700;
+    font-size: 25px;
+    text-align: right;
+    padding: 5px 8px;
+    text-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transition: color .2s ease-in-out;
+}
+#yt-trailer .modal-dialog .modal-close:hover {
+  color: #e74c3c;
+  cursor: pointer;
+}
+#yt-trailer .modal-dialog iframe {
+  width: 100%;
+}
+
+
+@media screen and (min-width: 768px){
+  #yt-trailer .modal-dialog {
+    width: 560px;
+    margin-top: 100px;
+  }
 }

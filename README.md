@@ -31,7 +31,7 @@ Este projeto tem como objetivo a utilização dos conhecimentos adquiridos em sa
 
 ## Recursos da API
 
-#### Listagem de Filmes
+### Listagem de Filmes
 
 **Endpoint:**
 > https://yts.ag/api/v2/list_movies.json
@@ -50,7 +50,7 @@ Este projeto tem como objetivo a utilização dos conhecimentos adquiridos em sa
 | order_by | N | String (desc, asc) | desc | Ordena os resultados pela ordem escolhida. |
 | with_rt_ratings | N | Boolean | false | Retorna a lista com a pontuação do Rotten Tomatoes. |
 
-#### Detalhes do Filme
+### Detalhes do Filme
 
 **Endpoint:**
 > https://yts.ag/api/v2/movie_details.json

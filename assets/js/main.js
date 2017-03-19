@@ -1,27 +1,5 @@
 'use strict';
 
-/// Mount a query string
-Object.prototype.query = function(){
-	let q = '';
-
-	for(let k of Object.keys(this)){
-		q += `&${k}=${this[k]}`;
-	}
-
-	return q.substr(1);
-}
-
-/// AddEventListener
-Element.prototype.addEvent = function(event, callback) {
-    if (this.addEventListener) {
-        this.addEventListener(event, callback, false)
-    } else if (this.attachEvent) {
-        this.attachEvent('on' + event, callback);
-    } else {
-        this['on' + event] = callback;
-    }
-}
-
 /// Get query params
 window.$_GET = window.location.search.substr(1).split('&').reduce(function(o, i){
 	let
@@ -34,24 +12,24 @@ window.$_GET = window.location.search.substr(1).split('&').reduce(function(o, i)
 }, {});
 
 /// UI options
-  var hamburgerBtn = document.querySelector('.hamburger'),
-      overlay = document.querySelector('.overlay'),
-     isClosed = false;
+var
+	hamburgerBtn = document.querySelector('.hamburger'),
+	overlay = document.querySelector('.overlay'),
+	isClosed = false;
 
-    function hamburger_cross() {
-
-      if (isClosed == true) {
-        overlay.style.display = 'none';
-        hamburgerBtn.classList.remove('is-open');
-        hamburgerBtn.classList.add('is-closed');
-        isClosed = false;
-      } else {
-        overlay.style.display = 'block';
-        hamburgerBtn.classList.remove('is-closed');
-        hamburgerBtn.classList.add('is-open');
-        isClosed = true;
-      }
-  }
+function hamburger_cross() {
+	if (isClosed == true) {
+		overlay.style.display = 'none';
+		hamburgerBtn.classList.remove('is-open');
+		hamburgerBtn.classList.add('is-closed');
+		isClosed = false;
+	} else {
+		overlay.style.display = 'block';
+		hamburgerBtn.classList.remove('is-closed');
+		hamburgerBtn.classList.add('is-open');
+		isClosed = true;
+	}
+}
 hamburgerBtn.addEvent('click', hamburger_cross);
 document.querySelector('[data-toggle="offcanvas"]').addEvent('click', function(){
 	document.querySelector('#wrapper').classList.toggle('toggled')

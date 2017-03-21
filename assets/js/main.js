@@ -193,9 +193,6 @@ function showMovieData( json ){
 	// Movie title on title bar
 	document.querySelector('title').prepend(`${movie.title} - `);
 
-	// Get movie suggestions
-	yts.movieSuggestions(movie.id, showMovieSuggestions);
-
 	// Show torrent list
 	let temp = '';
 	let download;
@@ -210,6 +207,73 @@ function showMovieData( json ){
 	document.getElementById('loader').style.display = "none";
 }
 
-function showMovieSuggestions( json ){
-	//console.log( json );
+/**
+ * Contact Page
+ */
+//Contact us
+const firstName = document.querySelector("#InputFirstName");
+const lastName = document.querySelector("#InputLastName");
+const email = document.querySelector("#InputEmail");
+const telefone = document.querySelector("#Phone");
+const contactButton = document.querySelector("#contacts-submit");
+const comment = document.querySelector('#Comments');
+function validateEmail(email) {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+function validatePhone(phone)
+{
+  let re = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/gm;
+  return re.test(phone);
+}
+function validateAll()
+{
+  if(validatePhone(telefone.value)&&validateEmail(email.value))
+  {
+    return true;
+  }
+  else
+  {
+      if(!validatePhone(telefone.value))
+        telefone.style.backgroundColor = "#FB4A4A";
+      if(!validateEmail(email.value))
+        email.style.backgroundColor = "#FB4A4A";
+      return false;
+  }
+}
+email.oninput = () =>
+{
+    email.style.backgroundColor = "white";
+}
+telefone.oninput = () =>
+{
+    telefone.style.backgroundColor = "white";
+}
+
+contactButton.onclick = () =>
+{
+  if(validateAll()&&(firstName.value!=""&&lastName.value!=""&&email.value!=""&&telefone.value!=""))
+  {
+    firstName.value = "";
+    lastName.value = "";
+    email.value = "";
+    telefone.value = "";
+    comment.value = "";
+    swal({
+    title: 'Good job!',
+    text: 'You message has been send',
+    type: 'success',
+    confirmButtonText: 'Ok'
+  })
+
+  }
+  else
+  {
+    swal({
+    title: 'Error!',
+    text: 'Do you want to continue',
+    type: 'error',
+    confirmButtonText: 'Ok'
+  })
+  }
 }

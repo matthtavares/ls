@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="A search-service of movies and series torrents.">
+    <meta name="author" content="Mateus Tavares, Victor Ribeiro, Ronily Gomes">
+    <title>Contact - OpenTorrent</title>
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="overlay"></div>
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav">
+          <li class="sidebar-brand">
+            <a href="index.html">OpenTorrent</a>
+          </li>
+          <li>
+            <form action="search.html" method="GET" class="navbar-search">
+              <div class="input-group">
+                <input type="text" class="form-control" name="q" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-fill btn-default" type="button"><i class="fa fa-search"></i></button>
+                </span>
+              </div><!-- /input-group -->
+            </form>
+          </li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Genres <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="genre.html?genre=Action">Action</a></li>
+              <li><a href="genre.html?genre=Adventure">Adventure</a></li>
+              <li><a href="genre.html?genre=Animation">Animation</a></li>
+              <li><a href="genre.html?genre=Biography">Biography</a></li>
+              <li><a href="genre.html?genre=Comedy">Comedy</a></li>
+              <li><a href="genre.html?genre=Crime">Crime</a></li>
+              <li><a href="genre.html?genre=Documentary">Documentary</a></li>
+              <li><a href="genre.html?genre=Drama">Drama</a></li>
+              <li><a href="genre.html?genre=Family">Family</a></li>
+              <li><a href="genre.html?genre=Fantasy">Fantasy</a></li>
+              <li><a href="genre.html?genre=Film-Noir">Film-Noir</a></li>
+              <li><a href="genre.html?genre=History">History</a></li>
+              <li><a href="genre.html?genre=Horror">Horror</a></li>
+              <li><a href="genre.html?genre=Music">Music</a></li>
+              <li><a href="genre.html?genre=Musical">Musical</a></li>
+              <li><a href="genre.html?genre=Mystery">Mystery</a></li>
+              <li><a href="genre.html?genre=Romance">Romance</a></li>
+              <li><a href="genre.html?genre=Sci-Fi">Sci-Fi</a></li>
+              <li><a href="genre.html?genre=Sport">Sport</a></li>
+              <li><a href="genre.html?genre=Thriller">Thriller</a></li>
+              <li><a href="genre.html?genre=War">War</a></li>
+              <li><a href="genre.html?genre=Western">Western</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /#sidebar-wrapper -->
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+        </button>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+            <h2 class="page-header">Contact Us</h2>
+                  <p class="lead">Have a question or want further information?</p>
+
+                  <p>Fill in the short form and we will get back to you as soon as possible.</p> <br>
+
+                  <!-- CONTACT US FORM -->
+                  <div class="panel panel-default well">
+                    <div class="panel-body">
+                      <form action="" class="form-horizontal track-event-form bv-form" data-goaltype="”General”" data-formname="”ContactUs”" method="post" id="contact-us-all" novalidate="novalidate">
+                        <input name="elqSiteId" type="hidden" value="928">
+                        <input name="sFDCLastCampaignID" type="hidden" value="701400000012Lql">
+                        <input name="elqFormName" type="hidden" value="EMEAAllContactUsSubmissions">
+                        <input name="nexturl" type="hidden" value="">
+                        <input name="Partner" type="hidden" value="">
+                        <input name="language" type="hidden" value="en">
+
+                        <div class="form-group">
+                          <div class="col-sm-6">
+                            <div class="input-group">
+                              <div class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                              </div>
+                              <input type="text" class="form-control" id="InputFirstName" placeholder="Enter first name" name="C_FirstName" data-bv-field="C_FirstName">
+                            </div>
+                            <small data-bv-validator="notEmpty" data-bv-validator-for="C_FirstName" class="help-block" style="display: none;">Required</small>
+                          </div>
+                            <div class="col-sm-6">
+                              <div class="input-group">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-user"></i>
+                                </div>
+                                <input type="text" class="form-control" id="InputLastName" placeholder="Enter last name" name="C_LastName" data-bv-field="C_LastName">
+                              </div>
+                              <small data-bv-validator="notEmpty" data-bv-validator-for="C_LastName" class="help-block" style="display: none;">Required</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <div class="input-group">
+                              <div class="input-group-addon">
+                                <i class="fa fa-envelope"></i>
+                              </div>
+                              <input type="text" class="form-control" id="InputEmail" placeholder="Enter email" name="C_EmailAddress" data-bv-field="C_EmailAddress">
+                            </div>
+                            <small data-bv-validator="notEmpty" data-bv-validator-for="C_EmailAddress" class="help-block" style="display: none;">Required</small>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <div class="input-group">
+                              <div class="input-group-addon">
+                                <i class="fa fa-phone"></i>
+                              </div>
+                              <input type="text" class="form-control" id="Phone" placeholder="Phone" name="C_BusPhone">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <div class="input-group">
+                              <div class="input-group-addon">
+                                <i class="fa fa-comment fa-2"></i>
+                              </div>
+                              <textarea class="form-control" name="Comments" id="Comments" rows="5" style="width:99.9%" placeholder="Enter your message here"></textarea>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <button id="contacts-submit" type="button" class="btn btn-default btn-info">CONTACT US</button>
+                          </div>
+                        </div>
+                        <input type="hidden" value="">
+                      </form>
+                    </div><!-- end panel-body -->
+                  </div><!-- end panel -->
+                  <!-- END DOWNLOAD PANEL -->
+            </div>
+          </div>
+
+          <footer id="footer">
+            <p class="text-center">Made with <i class="fa fa-heart text-danger"></i> in João Pessoa</p>
+          </footer>
+        </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript
+      ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.6/bootstrap-native.min.js"></script>
+    <script src="https://use.fontawesome.com/88126ae5a7.js"></script>
+    <script src="https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.js"></script>
+    <script src="assets/js/polyfills.js"></script>
+    <script src="assets/js/prototypes.js"></script>
+    <script src="assets/js/yts.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

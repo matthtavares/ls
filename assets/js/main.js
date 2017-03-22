@@ -11,6 +11,19 @@ window.$_GET = window.location.search.substr(1).split('&').reduce(function(o, i)
 	return o;
 }, {});
 
+/// Add events
+function addEvent(elem, event, callback) {
+	if( elem != null && typeof elem != 'undefined' ){
+    if (elem.addEventListener) {
+        elem.addEventListener(event, callback, false)
+    } else if (elem.attachEvent) {
+        elem.attachEvent('on' + event, callback);
+    } else {
+        elem['on' + event] = callback;
+    }
+	}
+}
+
 /// UI options
 var
 	hamburgerBtn = document.querySelector('.hamburger'),
@@ -30,11 +43,11 @@ function hamburger_cross() {
 		isClosed = true;
 	}
 }
-hamburgerBtn.addEvent('click', hamburger_cross);
-document.querySelector('[data-toggle="offcanvas"]').addEvent('click', function(){
+addEvent(hamburgerBtn, 'click', hamburger_cross);
+addEvent(document.querySelector('[data-toggle="offcanvas"]'), 'click', function(){
 	document.querySelector('#wrapper').classList.toggle('toggled')
 });
-document.querySelector('.btn-goback').addEvent('click', function(){
+addEvent(document.querySelector('.btn-goback'), 'click', function(){
 	window.history.back();
 });
 
@@ -187,7 +200,7 @@ function showMovieData( json ){
 	if( movie.yt_trailer_code ){
 		document.querySelector('.yt-btn').innerHTML = `<button type="button" class="btn btn-youtube btn-fill" data-yt-code="${movie.yt_trailer_code}"><i class="fa fa-youtube-play"></i> Watch Trailer</button>`;
 		yttrailer.create( movie.yt_trailer_code );
-		document.querySelector('.btn-youtube').addEvent('click', yttrailer.open );
+addEvent(		document.querySelector('.btn-youtube'), 'click', yttrailer.open );
 	}
 
 	// Movie title on title bar

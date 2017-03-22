@@ -2,6 +2,8 @@
 
 Projeto de conclusão de disciplina de Linguagens de Script do IFPB - Campus João Pessoa.
 
+DEMO: [clique aqui](https://matthtavares.github.io/ls).
+
 ## Descrição
 
 Site de pesquisa e download de filmes através de torrent. A aplicação utiliza a API do [YTS](https://yts.ag/api) para consumo dos dados.

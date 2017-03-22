@@ -10,7 +10,7 @@ Object.prototype.query = function(){
 }
 
 /// AddEventListener
-Element.prototype.addEvent = function(event, callback) {
+/*Element.prototype.addEvent = function(event, callback) {
     if (this.addEventListener) {
         this.addEventListener(event, callback, false)
     } else if (this.attachEvent) {
@@ -18,4 +18,4 @@ Element.prototype.addEvent = function(event, callback) {
     } else {
         this['on' + event] = callback;
     }
-}
+}*/

@@ -223,7 +223,6 @@ addEvent(		document.querySelector('.btn-youtube'), 'click', yttrailer.open );
 /**
  * Contact Page
  */
-//Contact us
 const firstName = document.querySelector("#InputFirstName");
 const lastName = document.querySelector("#InputLastName");
 const email = document.querySelector("#InputEmail");
@@ -248,22 +247,25 @@ function validateAll()
   else
   {
       if(!validatePhone(telefone.value))
-        telefone.style.backgroundColor = "#FB4A4A";
+        telefone.style = "border-color : #FB4A4A;";
       if(!validateEmail(email.value))
-        email.style.backgroundColor = "#FB4A4A";
+        email.style = "border-color :#FB4A4A ;";
       return false;
   }
 }
-email.oninput = () =>
+ 
+addEvent(email,"input",emailWhite);
+addEvent(telefone,"input",telefoneWhite);
+function emailWhite()
 {
-    email.style.backgroundColor = "white";
+    email.style = "border-color: #DDD;";
 }
-telefone.oninput = () =>
+function telefoneWhite()
 {
-    telefone.style.backgroundColor = "white";
+    telefone.style = "border-color : #DDD;";
 }
-
-contactButton.onclick = () =>
+addEvent(contactButton,"click",contactButtonActive);
+function contactButtonActive()
 {
   if(validateAll()&&(firstName.value!=""&&lastName.value!=""&&email.value!=""&&telefone.value!=""))
   {
@@ -274,19 +276,28 @@ contactButton.onclick = () =>
     comment.value = "";
     swal({
     title: 'Good job!',
-    text: 'You message has been send',
+    text: 'Mensagem enviada :D',
     type: 'success',
     confirmButtonText: 'Ok'
   })
-
+ 
   }
-  else
+    else if(!validatePhone()||!validateEmail())
   {
     swal({
     title: 'Error!',
-    text: 'Do you want to continue',
+    text: 'Os campos invalidos estão marcados',
     type: 'error',
     confirmButtonText: 'Ok'
-  })
-  }
+    })
+    }
+    else
+    {
+        swal({
+    title: 'Error!',
+    text: 'Todos  os campos devem ser preenchidos',
+    type: 'error',
+    confirmButtonText: 'Ok'
+    })
+    }
 }

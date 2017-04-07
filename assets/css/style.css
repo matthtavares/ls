@@ -395,6 +395,16 @@ html { height: 100%;}
 }
 
 /**
+ * Results
+ */
+#searchResults .thumbnail {
+    min-height: 500px;
+}
+#searchResults .thumbnail .caption h2 {
+    font-size: 25px;
+}
+
+/**
  * Film Page
  */
 .film-title {

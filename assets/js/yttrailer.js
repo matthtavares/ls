@@ -20,6 +20,7 @@
     namespace.close = function(){
       document.querySelector('#yt-trailer').classList.remove('open');
       document.querySelector('body').classList.remove('yt-open');
+      window.document.querySelector('.ytp-play-button.ytp-button').click();
     };
 
 })(window.yttrailer || (window.yttrailer = {}));

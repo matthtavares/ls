@@ -2,6 +2,9 @@
     'use strict'
     var API_URL = "https://yts.ag/api/v2/";
 
+    /**
+     * Cria uma requisição XHR com o site da API.
+     */
     namespace.createRequest = function (requestURL, requestData, callback) {
         if (typeof callback !== 'function') {
             throw new Error("The callback parameter was not a function");
@@ -27,6 +30,9 @@
         xhr.send();
     };
 
+    /**
+     * Consulta por filmes baseados nos parâmetros passados em requestData.
+     */
     namespace.listMovies = function (requestData, callback){
       if (typeof callback !== 'function') {
           throw new Error("The callback parameter was not a function");
@@ -40,6 +46,9 @@
       this.createRequest(requestURL, requestData, callback);
     };
 
+    /**
+     * Obtém detalhes sobre o filme.
+     */
     namespace.movieDetails = function (requestData, callback){
       if (typeof callback !== 'function') {
           throw new Error("The callback parameter was not a function");

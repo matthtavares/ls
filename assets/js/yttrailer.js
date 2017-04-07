@@ -1,6 +1,10 @@
 (function (namespace) {
     'use strict'
 
+    /**
+     * Cria um modal com o video do YouTube baseado no código
+     * passado por yt_code.
+     */
     namespace.create = function( yt_code ){
       let template = `<div id="yt-trailer">
         <div class="overlay"></div>
@@ -12,13 +16,21 @@
       document.querySelector('#page-content-wrapper').innerHTML += template;
     };
 
+    /**
+     * Exibe o modal com o video.
+     */
     namespace.open = function(){
       document.querySelector('#yt-trailer').classList.add('open');
       document.querySelector('body').classList.add('yt-open');
     };
 
+    /**
+     * Fecha o modal.
+     */
     namespace.close = function(){
+      // Pausa o vídeo ao fechar
       document.getElementById('youtube-iframe').contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+
       document.querySelector('#yt-trailer').classList.remove('open');
       document.querySelector('body').classList.remove('yt-open');
     };

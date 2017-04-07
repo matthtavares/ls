@@ -141,19 +141,19 @@ const email = document.querySelector("#InputEmail");
 const telefone = document.querySelector("#Phone");
 const contactButton = document.querySelector("#contacts-submit");
 const comment = document.querySelector('#Comments');
- 
-addEvent(email,"input",emailWhite);
-addEvent(telefone,"input",telefoneWhite);
-function emailWhite()
+
+addEvent(email,"input",emailWhite);//Chamando e função emailWhite
+addEvent(telefone,"input",telefoneWhite);//Chamando e função telefoneWhite
+function emailWhite()///função para deixar o borda do input email na cor original
 {
     email.style = "border-color: #DDD;";
 }
-function telefoneWhite()
+function telefoneWhite()///função para deixar o borda do input telefone na cor original
 {
     telefone.style = "border-color : #DDD;";
 }
-addEvent(contactButton,"click",contactButtonActive);
-function contactButtonActive()
+addEvent(contactButton,"click",contactButtonActive);//chamando a função contactButtonActive
+function contactButtonActive()///verificar os contatos para verificar se estão validados
 {
   if(validateAll()&&(firstName.value!=""&&lastName.value!=""&&email.value!=""&&telefone.value!=""))
   {
@@ -168,7 +168,7 @@ function contactButtonActive()
     type: 'success',
     confirmButtonText: 'Ok'
   })
- 
+
   }
     else if(!validatePhone()||!validateEmail())
   {

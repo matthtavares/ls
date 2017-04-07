@@ -18,9 +18,9 @@
     };
 
     namespace.close = function(){
+      document.getElementById('youtube-iframe').contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
       document.querySelector('#yt-trailer').classList.remove('open');
       document.querySelector('body').classList.remove('yt-open');
-      document.getElementById('youtube-iframe').contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     };
 
 })(window.yttrailer || (window.yttrailer = {}));

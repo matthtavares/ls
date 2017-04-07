@@ -78,7 +78,7 @@
           <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
               <main id="film-content">
-                <button class="btn btn-default btn-fill btn-goback" type="button"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</button>
+                <button class="btn btn-default btn-fill btn-goback" onClick="history.go(-1)"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</button>
                 <div class="row">
                   <div class="col-md-3">
                     <img src="" alt="" class="film-poster img-responsive">
@@ -129,15 +129,7 @@
     <script src="https://use.fontawesome.com/88126ae5a7.js"></script>
     <script src="assets/js/polyfills.js"></script>
     <script src="assets/js/prototypes.js"></script>
-    <script src="assets/js/yts.js"></script>
     <script src="assets/js/yttrailer.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script type="text/javascript">
-      yts.movieDetails({
-        movie_id: $_GET['id'],
-        with_images: true,
-        with_cast: true
-      }, showMovieData);
-    </script>
-  </body>
+    <script src="dist/bundle.js"></script>
+    </body>
 </html>

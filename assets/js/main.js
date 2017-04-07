@@ -1,3 +1,6 @@
+import { addEvent, showSearchPagination } 				from './event'
+import { validateEmail, validatePhone, validateAll } 	from './validate'
+
 'use strict';
 
 /// Get query params
@@ -10,19 +13,6 @@ window.$_GET = window.location.search.substr(1).split('&').reduce(function(o, i)
 
 	return o;
 }, {});
-
-/// Add events
-function addEvent(elem, event, callback) {
-	if( elem != null && typeof elem != 'undefined' ){
-    if (elem.addEventListener) {
-        elem.addEventListener(event, callback, false)
-    } else if (elem.attachEvent) {
-        elem.attachEvent('on' + event, callback);
-    } else {
-        elem['on' + event] = callback;
-    }
-	}
-}
 
 /// UI options
 var
@@ -85,84 +75,6 @@ function showSearchResults( json ){
 
 	// Hide loading
 	document.getElementById('loader').style.display = "none";
-}
-
-function showSearchPagination( limit, totalResults ){
-	let
-		pag = '<nav><ul class="pagination">',
-		url = window.location.href,
-		queryString = $_GET,
-		currentPage = (typeof $_GET['page'] == 'undefined') ? 1 : parseInt($_GET['page']),
-		cssClass = '',
-		totalLinks = 5,
-		totalPages = Math.ceil( totalResults / limit ),
-		start = ( (currentPage - totalLinks) > 0 ) ? (currentPage - totalLinks) : 1,
-		end = ( (currentPage + totalLinks) < totalPages ) ? (currentPage + totalLinks) : totalPages;
-
-	for(let k of Object.keys(queryString)){
-		if( k == "" )
-			delete queryString[k];
-	}
-
-	if( window.location.search != "" )
-		url = url.replace(window.location.search, '?');
-	else
-		url = url + '?';
-
-	/// First page
-	queryString.page = 1;
-	if( currentPage == 1 ){
-		pag += `<li class="disabled"><a><i class="fa fa-angle-double-left"></i></a></li>`;
-	} else {
-		pag += `<li><a href="${url + queryString.query()}"><i class="fa fa-angle-double-left"></i></a></li>`;
-	}
-
-	/// Previous page
-	if( currentPage == 1 ){
-		queryString.page = 1;
-		pag += `<li class="disabled"><a><i class="fa fa-angle-left"></i></a></li>`;
-	} else {
-		queryString.page = currentPage - 1;
-		pag += `<li><a href="${url + queryString.query()}"><i class="fa fa-angle-left"></i></a></li>`;
-	}
-
-	if( start > 1 ){
-		queryString.page = 1;
-		pag += `<li><a href="${url + queryString.query()}">1</a></li>`;
-		pag += `<li class="disabled"><a>...</a></li>`;
-	}
-
-	for(let i = start; i <= end; i++){
-		cssClass = (currentPage == i) ? ' class="active"' : '';
-		queryString.page = i;
-		pag += `<li${cssClass}><a href="${url + queryString.query()}">${i}</a></li>`;
-	}
-
-	if( end < totalPages ){
-		queryString.page = totalPages;
-		pag += `<li class="disabled"><a>...</a></li>`;
-		pag += `<li><a href="${url + queryString.query()}">${totalPages}</a></li>`;
-	}
-
-	/// Next page
-	if( currentPage == totalPages ){
-		pag += `<li class="disabled"><a><i class="fa fa-angle-right"></i></a></li>`;
-	} else {
-		queryString.page = currentPage + 1;
-		pag += `<li><a href="${url + queryString.query()}"><i class="fa fa-angle-right"></i></a></li>`;
-	}
-
-	/// Last page
-	if( currentPage == totalPages ){
-		pag += `<li class="disabled"><a><i class="fa fa-angle-double-right"></i></a></li>`;
-	} else {
-		queryString.page = totalPages;
-		pag += `<li><a href="${url + queryString.query()}"><i class="fa fa-angle-double-right"></i></a></li>`;
-	}
-
-	pag += '</ul></nav>';
-
-	document.getElementById('searchPagination').innerHTML = pag;
 }
 
 function showMovieData( json ){
@@ -229,30 +141,6 @@ const email = document.querySelector("#InputEmail");
 const telefone = document.querySelector("#Phone");
 const contactButton = document.querySelector("#contacts-submit");
 const comment = document.querySelector('#Comments');
-function validateEmail(email) {
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-function validatePhone(phone)
-{
-  let re = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/gm;
-  return re.test(phone);
-}
-function validateAll()
-{
-  if(validatePhone(telefone.value)&&validateEmail(email.value))
-  {
-    return true;
-  }
-  else
-  {
-      if(!validatePhone(telefone.value))
-        telefone.style = "border-color : #FB4A4A;";
-      if(!validateEmail(email.value))
-        email.style = "border-color :#FB4A4A ;";
-      return false;
-  }
-}
  
 addEvent(email,"input",emailWhite);
 addEvent(telefone,"input",telefoneWhite);
@@ -300,4 +188,96 @@ function contactButtonActive()
     confirmButtonText: 'Ok'
     })
     }
+}
+
+/* ==> yts <==*/
+
+(function (namespace) {
+    'use strict'
+    var API_URL = "https://yts.ag/api/v2/";
+
+    namespace.createRequest = function (requestURL, requestData, callback) {
+        if (typeof callback !== 'function') {
+            throw new Error("The callback parameter was not a function");
+        }
+
+        if (typeof requestData != 'object') {
+            throw new Error("I don't know how to handle " + requestData);
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", requestURL + requestData.query(), true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState !== 4) {
+                return;
+            }
+
+            if (xhr.status !== 200) {
+                throw new Error("Unexpected HTTP Status Code (" + xhr.status + ")");
+            }
+
+            callback( JSON.parse(xhr.responseText) );
+        };
+        xhr.send();
+    };
+
+    namespace.listMovies = function (requestData, callback){
+      if (typeof callback !== 'function') {
+          throw new Error("The callback parameter was not a function");
+      }
+
+      if (typeof requestData != 'object') {
+          throw new Error("I don't know how to handle " + requestData);
+      }
+
+      let requestURL = API_URL + 'list_movies.json?';
+      this.createRequest(requestURL, requestData, callback);
+    };
+
+    namespace.movieDetails = function (requestData, callback){
+      if (typeof callback !== 'function') {
+          throw new Error("The callback parameter was not a function");
+      }
+
+      if (typeof requestData != 'object') {
+          throw new Error("I don't know how to handle " + requestData);
+      }
+
+      let requestURL = API_URL + 'movie_details.json?';
+      this.createRequest(requestURL, requestData, callback);
+    };
+
+})(window.yts || (window.yts = {}));
+
+var url = window.location.href;
+
+if(url.match(/index/) != null){
+	yts.listMovies({
+      sort_by: 'year',
+      order_by: 'desc',
+      page: (typeof $_GET['page'] == 'undefined') ? 1 : $_GET['page']
+   }, showSearchResults);
+}
+else if(url.match(/film/) != null){
+	yts.movieDetails({
+      movie_id: $_GET['id'],
+      with_images: true,
+      with_cast: true
+   }, showMovieData);
+}
+else if(url.match(/genre/) != null){
+	document.querySelector('title').prepend(`Genre: ${$_GET['genre']} - `);
+   document.querySelector('.genre-term').innerHTML = $_GET['genre'];
+   yts.listMovies({
+      genre: $_GET['genre'],
+      page: (typeof $_GET['page'] == 'undefined') ? 1 : $_GET['page']
+   }, showSearchResults);
+}
+else if(url.match(/search/) != null){
+	document.querySelector('title').prepend(`Search for ${$_GET['q']} - `);
+   document.querySelector('.search-term').innerHTML = $_GET['q'];
+   yts.listMovies({
+   	query_term: $_GET['q'],
+      page: (typeof $_GET['page'] == 'undefined') ? 1 : $_GET['page']
+   }, showSearchResults);
 }

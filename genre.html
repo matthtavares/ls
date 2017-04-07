@@ -104,15 +104,6 @@
     <script src="https://use.fontawesome.com/88126ae5a7.js"></script>
     <script src="assets/js/polyfills.js"></script>
     <script src="assets/js/prototypes.js"></script>
-    <script src="assets/js/yts.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script type="text/javascript">
-      document.querySelector('title').prepend(`Genre: ${$_GET['genre']} - `);
-      document.querySelector('.genre-term').innerHTML = $_GET['genre'];
-      yts.listMovies({
-        genre: $_GET['genre'],
-        page: (typeof $_GET['page'] == 'undefined') ? 1 : $_GET['page']
-      }, showSearchResults);
-    </script>
+    <script src="dist/bundle.js"></script>
   </body>
 </html>
